@@ -3,8 +3,7 @@
 
 
 import axios from "axios"
-import Link from "next/link"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 
 
 const maindiv:string ="h-screen w-screen flex items-center justify-center "
@@ -15,31 +14,31 @@ const button : string="bg-green-700 w-full h-10 border border-black text-amber-1
 
 export default  function Home(){
 
-  const [name,setName] = useState("");
-  const [rollno,setRollno] = useState("");
 
-  const name1 = useRef<string>();
+  const nameRef = useRef<HTMLInputElement>(null);
+  const classRef = useRef<HTMLInputElement>(null);
 
-
-  function handelForm(e){
+  async function  handelForm(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault() ;
-    axios.post("http://localhost:3000/api/v1",{
-      name:name1.current,
-      class:rollno
-    })
+    await console.log("start")
+    await axios.post("http://localhost:3000/api/v1",{
+      name:nameRef.current?.value || "",
+      class:classRef.current?.value || ""})
+    await console.log("done")
+
   }
   
   return(
     <div className ={`${maindiv}`}>
-      <form >
+      <form onSubmit={handelForm}>
       <div className="bg-gray-500 p-10 rounded-2xl border  " >
-          <input  className={`${inputbox}`}  type="text" name="" id=""  placeholder="Name" onChange={(e)=>{name1.current=e.target.value }}/>
+          <input  className={`${inputbox}`}  type="text" name="" id=""  placeholder="Name" ref={nameRef}/>
           <br />
           <br />
-         <input className={`${inputbox}`} type="text" name="" id=""  placeholder="Class" onChange={(e)=>{setRollno(e.target.value)}}/>
+         <input className={`${inputbox}`} type="text" name="" id=""  placeholder="Class" ref={classRef}/>
           <br />
           <br />
-          <button className={`${button}`} onClick={(e)=>{handelForm(e)}} >submit </button>
+          <button className={`${button}`} >submit </button>
       </div>
       </form>
     </div>
