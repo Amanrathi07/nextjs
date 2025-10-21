@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-// export async function GET(req: NextRequest) {
-//   return NextResponse.json({ name: "aman" });
-// }
+export async function GET(req: NextRequest) {
+  return NextResponse.json({ name: "aman" });
+}
 
 // export async function POST(req: NextRequest) {
 //   const data = await req.json();
@@ -24,22 +24,29 @@ import { cookies } from "next/headers";
 
 
 
-export async function POST(req:NextResponse){
+// export async function POST(req:NextResponse){
 
-    const cookie = cookies();
-    //@ts-expect-error
-    cookie.set("aman","my cookie");
+//     const cookie = cookies();
+//     //@ts-expect-error
+//     cookie.set("aman","my cookie");
 
-    return NextResponse.json({message:"cookie set"})
-}
+//     return NextResponse.json({message:"cookie set"})
+// }
 
-export async function GET(req:NextRequest) {
+// export async function GET(req:NextRequest) {
     
-    const usercookie = req.cookies.get("aman");
+//     const usercookie = req.cookies.get("aman");
 
-    console.log("cookie :",usercookie?.value);
+//     console.log("cookie :",usercookie?.value);
 
     
 
-    return NextResponse.json({message:"i get the cookie"})
+//     return NextResponse.json({message:"i get the cookie"})
+// }
+
+export async function POST(req:NextRequest){
+    const data = await req.json();
+    console.log(data);
+
+    return NextResponse.json({message:"got the data"})
 }
