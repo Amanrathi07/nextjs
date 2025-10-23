@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+
+import { PrismaClient } from "@/app/generated/prisma/client";
 
 export async function GET(req: NextRequest) {
   return NextResponse.json({ name: "aman" });
@@ -44,9 +45,20 @@ export async function GET(req: NextRequest) {
 //     return NextResponse.json({message:"i get the cookie"})
 // }
 
+
+const client = new PrismaClient();
+
 export async function POST(req:NextRequest){
     const data = await req.json();
-    console.log(data);
+   
+  console.log(data)
+    const user = await client.user.create({
+      data:{
+        email:data.email ,
+        password:data.password
+      }
+    })
+    
 
-    return NextResponse.json({message:"got the data"})
-}
+    return NextResponse.json({ message: "User created", userId: user.id });
+  }
