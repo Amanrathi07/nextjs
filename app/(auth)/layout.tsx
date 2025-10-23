@@ -7,7 +7,7 @@ export default function ({
     return(
         <div>
         <h1>header</h1>
-             {children}
+            {children}
         <h1>footer</h1>
         </div>
     )
