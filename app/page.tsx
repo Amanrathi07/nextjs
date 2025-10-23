@@ -15,15 +15,15 @@ const button : string="bg-green-700 w-full h-10 border border-black text-amber-1
 export default  function Home(){
 
 
-  const nameRef = useRef<HTMLInputElement>(null);
-  const classRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef<HTMLInputElement>(null);
 
   async function  handelForm(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault() ;
     await console.log("start")
     await axios.post("http://localhost:3000/api/v1",{
-      name:nameRef.current?.value || "",
-      class:classRef.current?.value || ""})
+      email:emailRef.current?.value || "",
+      password:passRef.current?.value || ""})
     await console.log("done")
 
   }
@@ -32,10 +32,10 @@ export default  function Home(){
     <div className ={`${maindiv}`}>
       <form onSubmit={handelForm}>
       <div className="bg-gray-500 p-10 rounded-2xl border  " >
-          <input  className={`${inputbox}`}  type="text" name="" id=""  placeholder="Name" ref={nameRef}/>
+          <input  className={`${inputbox}`}  type="text" name="" id=""  placeholder="email" ref={emailRef}/>
           <br />
           <br />
-         <input className={`${inputbox}`} type="text" name="" id=""  placeholder="Class" ref={classRef}/>
+         <input className={`${inputbox}`} type="text" name="" id=""  placeholder="password" ref={passRef}/>
           <br />
           <br />
           <button className={`${button}`} >submit </button>
