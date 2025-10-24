@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { PrismaClient } from "@/app/generated/prisma/client"
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   return NextResponse.json({ name: "aman" });
 }
 

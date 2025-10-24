@@ -1,9 +1,11 @@
 
-export default function Post({params}:any){
+
+export default function Post(){
     
     return(
         <div>
-            post id is : {params.postId}
+            {/* post id is : {params.postId} */}
+            working
         </div>
     )
 }
